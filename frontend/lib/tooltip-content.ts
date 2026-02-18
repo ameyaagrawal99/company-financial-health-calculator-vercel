@@ -1,0 +1,240 @@
+import type { TooltipContent } from "./types";
+
+export const TOOLTIPS: Record<string, TooltipContent> = {
+  // ── Profitability ──────────────────────────────────────────────
+  pat: {
+    full_name: "Profit After Tax (PAT)",
+    formula: "Revenue − All Expenses − Tax",
+    plain_english: "The actual money the company kept after paying everyone, including the government",
+    signifies: "Bottom-line health. If PAT is shrinking even as revenue grows, costs or taxes are eating your business",
+    healthy_range: "Positive & growing year-on-year",
+  },
+  net_margin: {
+    full_name: "Net Profit Margin",
+    formula: "PAT ÷ Revenue × 100",
+    plain_english: "Of every ₹100 earned, how much reaches the bottom line as profit",
+    signifies: "The ultimate efficiency measure — catches all costs, not just production. A declining net margin despite growing revenue means cost structure is worsening.",
+    healthy_range: "5–15% for most Indian SMEs; >20% for asset-light services",
+  },
+  ebitda_margin: {
+    full_name: "EBITDA Margin",
+    formula: "(Gross Profit − OpEx) ÷ Revenue × 100",
+    plain_english: "Cash-like profit — closest to 'how much cash the business actually generates from operations'",
+    signifies: "Most commonly used by investors and banks to value a business and assess debt-repayment ability",
+    healthy_range: ">15% for manufacturing; >20% for services",
+  },
+  gross_margin: {
+    full_name: "Gross Profit Margin",
+    formula: "(Revenue − COGS) ÷ Revenue × 100",
+    plain_english: "Of every ₹100 earned, how much is left after paying for what you sold",
+    signifies: "Measures pricing power and production/sourcing efficiency. Declining gross margin = input cost pressure or pricing pressure.",
+    healthy_range: "30–60% for manufacturing; >50% for services",
+  },
+  roe: {
+    full_name: "Return on Equity (ROE)",
+    formula: "PAT ÷ Shareholders' Equity × 100",
+    plain_english: "How much profit does the business generate on money invested by shareholders",
+    signifies: "Measures how efficiently shareholder money is working. Compare against FD rate (6–7%) — ROE should be significantly higher",
+    indian_context: "If ROE < 12%, shareholders would be better off in a mutual fund. >20% is considered excellent for Indian SMEs.",
+    healthy_range: ">15% generally considered good",
+  },
+  roa: {
+    full_name: "Return on Assets (ROA)",
+    formula: "PAT ÷ Total Assets × 100",
+    plain_english: "How much profit is generated per rupee of assets owned",
+    signifies: "Asset-heavy businesses (manufacturing) will have lower ROA than asset-light (services). Low ROA may indicate assets sitting idle.",
+    healthy_range: ">5% generally; asset-light businesses >15%",
+  },
+  roce: {
+    full_name: "Return on Capital Employed (ROCE)",
+    formula: "EBIT ÷ Capital Employed × 100",
+    plain_english: "How efficiently is ALL capital — equity + debt — being used to generate operating profit",
+    signifies: "Preferred over ROE by Indian investors because it accounts for debt. Should exceed your cost of borrowing (WACC).",
+    indian_context: "Key metric for banks evaluating term loan proposals. Banks look for ROCE > lending rate + 2%",
+    healthy_range: "Should exceed cost of capital / WACC",
+  },
+
+  // ── Liquidity ──────────────────────────────────────────────────
+  current_ratio: {
+    full_name: "Current Ratio",
+    formula: "Current Assets ÷ Current Liabilities",
+    plain_english: "Can you pay all your short-term dues using your short-term assets?",
+    signifies: "Core short-term solvency check. Below 1 = cannot meet near-term obligations from current assets alone. Too high (>3x) = idle assets.",
+    healthy_range: "1.5x – 2.5x",
+  },
+  quick_ratio: {
+    full_name: "Quick Ratio (Acid Test)",
+    formula: "(Current Assets − Inventory) ÷ Current Liabilities",
+    plain_english: "Can you pay short-term dues WITHOUT selling inventory?",
+    signifies: "More conservative than Current Ratio — inventory can take weeks or months to sell. This tests true liquidity.",
+    healthy_range: ">1.0x",
+  },
+  cash_ratio: {
+    full_name: "Cash Ratio",
+    formula: "Cash & Equivalents ÷ Current Liabilities",
+    plain_english: "Can you pay short-term dues using only cash you have right now?",
+    signifies: "The most stringent liquidity test — pure cash sufficiency. Too high means cash is sitting idle instead of working.",
+    healthy_range: "0.2x – 0.5x",
+  },
+  working_capital: {
+    full_name: "Working Capital (Net)",
+    formula: "Current Assets − Current Liabilities",
+    plain_english: "The money 'tied up' in running day-to-day operations",
+    signifies: "Positive WC = business can run its operations. Negative WC = potential short-term crisis. Should grow proportionally with revenue.",
+    healthy_range: "Positive; should grow with revenue",
+  },
+
+  // ── Efficiency ─────────────────────────────────────────────────
+  dso: {
+    full_name: "Days Sales Outstanding (DSO)",
+    formula: "(Trade Receivables ÷ Revenue) × 365",
+    plain_english: "On average, how many days after billing does a customer pay?",
+    signifies: "Rising DSO means cash is getting stuck in debtors even if revenue looks great. A company can be profitable on paper but cash-starved due to high DSO.",
+    indian_context: "MSME customers must be paid within 45 days under MSME Act Section 15. If you are an MSME yourself, track closely.",
+    healthy_range: "<60 days for services; <45 days for MSME-supplied goods",
+  },
+  dpo: {
+    full_name: "Days Payable Outstanding (DPO)",
+    formula: "(Trade Payables ÷ COGS) × 365",
+    plain_english: "On average, how many days after receiving goods/services do you pay your vendor?",
+    signifies: "Higher DPO = more time to use vendors' money (good for cash flow). But too high = strained vendor relationships and MSME compliance risk.",
+    indian_context: "If your vendors are MSMEs, you MUST pay within 45 days. Exceeding this attracts compound interest at 3× bank rate.",
+    healthy_range: "30–60 days",
+  },
+  dio: {
+    full_name: "Days Inventory Outstanding (DIO)",
+    formula: "(Inventory ÷ COGS) × 365",
+    plain_english: "How many days does your inventory sit before it is sold?",
+    signifies: "High DIO = money locked in unsold stock. Increases storage, obsolescence, and financing costs. Low DIO = fast-moving, efficient operations.",
+    healthy_range: "Industry specific; lower is better for most",
+  },
+  ccc: {
+    full_name: "Cash Conversion Cycle (CCC)",
+    formula: "DSO + DIO − DPO",
+    plain_english: "How many days does it take to convert a rupee of investment back into cash?",
+    signifies: "The shorter the CCC, the less working capital you need. Negative CCC (like large e-commerce) = suppliers fund your business.",
+    healthy_range: "<90 days for most Indian SMEs; lower is better",
+  },
+  asset_turnover: {
+    full_name: "Asset Turnover Ratio",
+    formula: "Revenue ÷ Average Total Assets",
+    plain_english: "How much revenue does each rupee of assets generate?",
+    signifies: "Measures operational efficiency — are assets sitting idle or working hard? Low ratio may indicate underutilised capacity.",
+    healthy_range: ">1x for services; 0.5–1x for manufacturing",
+  },
+  inventory_turnover: {
+    full_name: "Inventory Turnover Ratio",
+    formula: "COGS ÷ Average Inventory",
+    plain_english: "How many times per year is your inventory sold and replaced?",
+    signifies: "Low turnover = overstock or slow-moving goods. High turnover = lean and efficient inventory management.",
+    healthy_range: "6–12x for most sectors; higher for FMCG",
+  },
+
+  // ── Leverage ───────────────────────────────────────────────────
+  debt_to_equity: {
+    full_name: "Debt-to-Equity Ratio (D/E)",
+    formula: "Total Debt ÷ Shareholders' Equity",
+    plain_english: "For every ₹1 of owner money, how many rupees are borrowed?",
+    signifies: "Core leverage measure. Banks watch this closely. Very high D/E = fragile to revenue shocks. D/E > 3x triggers IBC risk if creditor default exceeds ₹1 Crore.",
+    indian_context: "Banks typically cap term loan approvals at D/E < 2x. SIDBI and NBFCs may go up to 3x for specific sectors.",
+    healthy_range: "<1x (conservative); <2x (acceptable for most Indian SMEs)",
+  },
+  debt_ratio: {
+    full_name: "Debt Ratio",
+    formula: "Total Debt ÷ Total Assets",
+    plain_english: "What fraction of assets is funded by debt?",
+    signifies: ">0.5 means creditors own more of the business than shareholders. The higher this is, the more vulnerable to economic downturns.",
+    healthy_range: "<0.5 preferred",
+  },
+  interest_coverage: {
+    full_name: "Interest Coverage Ratio (ICR)",
+    formula: "EBIT ÷ Finance Costs",
+    plain_english: "How many times can your operating profit cover your interest payments?",
+    signifies: "Below 1.5x is dangerous — barely covering interest, nothing left for principal. Banks use this for credit decisions. Below 1x = EBIT cannot even cover interest.",
+    indian_context: "RBI guidelines require ICR >1.5x for Standard Asset classification. Banks look for >2x for new loan approval.",
+    healthy_range: ">2x minimum; >3x healthy; >5x excellent",
+  },
+  dscr: {
+    full_name: "Debt Service Coverage Ratio (DSCR)",
+    formula: "(PAT + Depreciation) ÷ (Annual Loan Repayment + Interest)",
+    plain_english: "Can operating cash flow comfortably cover all loan repayments + interest?",
+    signifies: "The single most important metric for bank health. Below 1x = cannot even service debt from operations. Below 1.25x = Sub-Standard Asset risk.",
+    indian_context: "RBI Norm: DSCR ≥ 1.25x for Standard Asset. Between 1.0–1.25x = Sub-Standard. Below 1.0x for 90 days = NPA classification.",
+    healthy_range: ">1.25x (RBI minimum); >1.5x (healthy); >2x (excellent)",
+  },
+  net_debt: {
+    full_name: "Net Debt",
+    formula: "Total Debt − Cash & Cash Equivalents",
+    plain_english: "Total borrowings minus what you could immediately use to repay",
+    signifies: "More accurate than gross debt — cash in bank reduces effective debt burden. Negative net debt = company has more cash than debt.",
+    healthy_range: "Lower is better; negative = debt-free position",
+  },
+  net_debt_to_ebitda: {
+    full_name: "Net Debt to EBITDA",
+    formula: "Net Debt ÷ EBITDA",
+    plain_english: "How many years of current operating profits would it take to repay net debt?",
+    signifies: "Standard investor and bank metric. Used for leveraged buyout analysis and credit rating. Higher than 3x is considered over-leveraged.",
+    healthy_range: "<2x (strong); <3x (comfortable); >5x (over-leveraged)",
+  },
+
+  // ── Cash Flow ──────────────────────────────────────────────────
+  ocf: {
+    full_name: "Operating Cash Flow (OCF)",
+    formula: "Cash generated from core business operations",
+    plain_english: "How much actual cash the business generates just by running its operations",
+    signifies: "The most honest indicator of business health. Good PAT but poor OCF = paper profits, not real cash. This is what keeps the lights on.",
+    healthy_range: "Positive; should track EBITDA closely",
+  },
+  fcf: {
+    full_name: "Free Cash Flow (FCF)",
+    formula: "Operating Cash Flow − Capital Expenditure",
+    plain_english: "Cash left over after investing in the upkeep and growth of the business",
+    signifies: "FCF is what's truly available to repay debt, pay dividends, or fund new growth. Negative FCF is fine during high-growth phases.",
+    healthy_range: "Positive for mature businesses; negative acceptable during expansion",
+  },
+  ocf_margin: {
+    full_name: "Operating Cash Flow Margin",
+    formula: "Operating CF ÷ Revenue × 100",
+    plain_english: "Of every ₹100 in revenue, how much comes back as actual operating cash?",
+    signifies: "A large gap between OCF margin and net margin indicates aggressive working capital consumption or accounting adjustments inflating profits.",
+    healthy_range: ">8% for most businesses",
+  },
+
+  // ── Indian Specific ────────────────────────────────────────────
+  itc: {
+    full_name: "Input Tax Credit (ITC)",
+    plain_english: "GST you paid on purchases that can be offset against GST you collect on sales",
+    signifies: "Working capital asset — unutilised ITC = cash locked with government. Large ITC balance suggests reconciliation issue with GSTR-2A.",
+    indian_context: "ITC must be claimed within 2 years. Excess ITC vs liability needs GSTR reconciliation. ITC on exempt supplies must be reversed.",
+  },
+  tds: {
+    full_name: "Tax Deducted at Source (TDS)",
+    plain_english: "Tax deducted by the payer before making certain payments (salary, rent, professional fees, etc.)",
+    signifies: "TDS deducted reduces vendor payment — creates a liability. TDS recoverable (on received payments) is a current asset against your tax liability.",
+    indian_context: "Must be deposited by 7th of following month (or 30th April for March deductions). Late payment: 1.5%/month under Section 201. Failure to deposit = prosecution.",
+  },
+  cc: {
+    full_name: "Cash Credit (CC)",
+    plain_english: "A revolving short-term credit facility from a bank against stock and debtors",
+    signifies: "Working capital lifeline for Indian businesses — draw and repay as needed. Interest charged only on amount drawn.",
+    indian_context: "Banks set Drawing Power (DP) based on stock + debtors. If CC balance exceeds DP, bank can freeze the account. Utilisation >80% is a negative signal.",
+  },
+  npa: {
+    full_name: "Non-Performing Asset (NPA)",
+    plain_english: "A loan where the borrower has not made EMI or interest payment for 90+ days",
+    signifies: "Once classified NPA, bank can recall the entire loan, report to CIBIL, and initiate SARFAESI recovery. This is the nuclear outcome of poor DSCR.",
+    indian_context: "RBI Framework: Standard → Sub-Standard (90 days overdue) → Doubtful (12+ months) → Loss. Leading indicator: DSCR < 1.25x.",
+  },
+  ibc: {
+    full_name: "Insolvency & Bankruptcy Code (IBC)",
+    plain_english: "India's insolvency law — a creditor can drag a company to NCLT if a debt of ₹1 Crore+ defaults",
+    signifies: "The nuclear option — company management loses control; Resolution Professional takes over. Altman Z-Score < 1.8 is a proxy warning.",
+    indian_context: "Triggered by: any creditor filing at NCLT for default > ₹1 Crore. Directors lose control within 14 days. Company enters CIRP for 180 days.",
+  },
+  msme: {
+    full_name: "Micro, Small & Medium Enterprise (MSME)",
+    plain_english: "Classification of businesses by investment and turnover thresholds under MSMED Act 2006",
+    signifies: "Affects payment timelines — buyers must pay MSMEs within 45 days or face mandatory interest. Also affects priority lending eligibility.",
+    indian_context: "Micro: Turnover < ₹5 Cr. Small: < ₹50 Cr. Medium: < ₹250 Cr. (Updated 2020 criteria). MSMEs get priority in government procurement and lower GST on some categories.",
+  },
+};

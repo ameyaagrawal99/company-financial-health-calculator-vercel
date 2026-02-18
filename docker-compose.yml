@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      # Set your OpenAI API key here OR enter it in the UI when prompted
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    restart: unless-stopped

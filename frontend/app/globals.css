@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #F8F7F4;
+  --bg-card: #FFFFFF;
+  --bg-subtle: #F1F0ED;
+  --border: #E4E2DC;
+  --text-primary: #1C1917;
+  --text-secondary: #6B6560;
+  --text-muted: #A8A29E;
+  --accent: #3D5A80;
+  --accent-light: #E8EEF5;
+
+  /* Chart colors */
+  --chart-1: #3D5A80;
+  --chart-2: #98C1D9;
+  --chart-3: #6B9E78;
+  --chart-4: #C17B5A;
+  --chart-5: #8B7BB5;
+  --chart-6: #B5A642;
+  --chart-7: #A0A0A0;
+}
+
+* {
+  font-variant-numeric: tabular-nums;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Metric values use tabular nums for alignment */
+.metric-value {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-subtle);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Tooltip */
+.tooltip-dark {
+  background: #1C1917;
+  color: #FFFFFF;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 12px;
+  max-width: 320px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+
+/* Upload drop zone */
+.drop-active {
+  border-color: var(--accent) !important;
+  background-color: var(--accent-light) !important;
+}
+
+/* Section card hover */
+.section-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+  transition: all 0.15s ease;
+}
+
+/* Status colors */
+.status-green { @apply bg-green-50 text-green-800 border-green-200; }
+.status-yellow { @apply bg-yellow-50 text-yellow-800 border-yellow-200; }
+.status-orange { @apply bg-orange-50 text-orange-800 border-orange-200; }
+.status-red { @apply bg-red-50 text-red-800 border-red-200; }
+
+/* Chart container */
+.recharts-wrapper {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+}
+
+/* Page title */
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Section heading */
+.section-heading {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Label */
+.metric-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Hero value */
+.metric-hero {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+/* Card value */
+.metric-card-value {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Delta badge */
+.delta-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Animate skeleton loader */
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
