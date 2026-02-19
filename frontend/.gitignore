@@ -9,6 +9,9 @@ out/
 .env.local
 .env*.local
 
+# TypeScript incremental build info
+*.tsbuildinfo
+
 # misc
 .DS_Store
 *.pem
