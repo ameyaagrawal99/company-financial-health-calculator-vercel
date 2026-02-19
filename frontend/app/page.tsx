@@ -268,7 +268,8 @@ export default function HomePage() {
                   <motion.div
                     key="dropzone"
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    animate={{ opacity: 1 }}>
+                  <div
                     {...getRootProps()}
                     className={`rounded-xl border-2 border-dashed p-10 text-center cursor-pointer transition-all ${isDragActive ? "drop-active" : ""}`}
                     style={{
@@ -288,6 +289,7 @@ export default function HomePage() {
                       <Upload className="w-4 h-4" />
                       Upload & Analyze
                     </span>
+                  </div>
                   </motion.div>
                 )}
               </AnimatePresence>

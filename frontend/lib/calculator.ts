@@ -113,10 +113,10 @@ export function calculateRatios(
   const capital_employed = d.total_assets - d.total_current_liabilities;
 
   // Profitability
-  const gross_margin = r(safeDiv(p.gross_profit, revenue) ?? 0, 2) * 100 || undefined;
-  const net_margin = r(safeDiv(p.pat, revenue) ?? 0, 2) * 100 || undefined;
-  const ebitda_margin = r(safeDiv(p.ebitda, revenue) ?? 0, 2) * 100 || undefined;
-  const ebit_margin = r(safeDiv(p.ebit, revenue) ?? 0, 2) * 100 || undefined;
+  const gross_margin = (r(safeDiv(p.gross_profit, revenue) ?? 0, 2) ?? 0) * 100 || undefined;
+  const net_margin = (r(safeDiv(p.pat, revenue) ?? 0, 2) ?? 0) * 100 || undefined;
+  const ebitda_margin = (r(safeDiv(p.ebitda, revenue) ?? 0, 2) ?? 0) * 100 || undefined;
+  const ebit_margin = (r(safeDiv(p.ebit, revenue) ?? 0, 2) ?? 0) * 100 || undefined;
   const roe = avg_equity ? r(p.pat / avg_equity * 100, 2) : undefined;
   const roa = avg_assets ? r(p.pat / avg_assets * 100, 2) : undefined;
   const roce = capital_employed ? r(p.ebit / capital_employed * 100, 2) : undefined;
@@ -201,6 +201,7 @@ export function calculateRatios(
     inventory_turnover,
     fixed_asset_turnover,
     capital_productivity,
+    ocf: r(cf.operating_cf, 2),
     ocf_margin,
     fcf,
     cf_to_debt,

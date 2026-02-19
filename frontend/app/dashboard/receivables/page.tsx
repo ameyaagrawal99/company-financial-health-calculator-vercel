@@ -36,7 +36,7 @@ export default function ReceivablesPage() {
 
   const overdueTotal = ageing.sixty_to_90 + ageing.ninety_to_180 + ageing.above_180;
   const overdeuePct = bs.trade_receivables > 0 ? overdueTotal / bs.trade_receivables * 100 : 0;
-  const msmRisk = data.msme_receivables > 0 && (ratios.dso ?? 0) > 45;
+  const msmRisk = (data.msme_receivables ?? 0) > 0 && (ratios.dso ?? 0) > 45;
 
   return (
     <div>

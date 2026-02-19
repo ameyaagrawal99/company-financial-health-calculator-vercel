@@ -64,7 +64,15 @@ export interface FinancialData {
   previous_year_cash_flow?: CashFlow | null;
   promoter_loans: number;
   msme_payables: number;
+  msme_receivables?: number | null;
   annual_loan_repayment: number;
+  debtor_ageing?: {
+    zero_to_30: number;
+    thirty_to_60: number;
+    sixty_to_90: number;
+    ninety_to_180: number;
+    above_180: number;
+  } | null;
   headcount?: number | null;
   data_confidence: "high" | "medium" | "low";
   document_type: string;
@@ -126,6 +134,7 @@ export interface FinancialRatios {
   fixed_asset_turnover?: number;
   capital_productivity?: number;
   // Cash Flow
+  ocf?: number;
   ocf_margin?: number;
   fcf?: number;
   cf_to_debt?: number;

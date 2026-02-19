@@ -34,7 +34,7 @@ export default function IncomePage() {
   ];
 
   // Bar chart: Revenue vs Expenses
-  const revVsExp = [
+  const revVsExp: Array<{ name: string; [key: string]: number | string }> = [
     { name: "Revenue", Revenue: pl.revenue_from_operations },
     { name: "COGS", COGS: pl.cogs },
     { name: "Employee", Employee: pl.employee_expenses },

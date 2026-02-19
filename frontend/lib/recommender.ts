@@ -277,8 +277,9 @@ export function generateRecommendations(
     });
   }
 
-  if (prevRatios?.revenue_from_operations && pl.revenue_from_operations > prevRatios.revenue_from_operations) {
-    const growth = ((pl.revenue_from_operations - prevRatios.revenue_from_operations) / prevRatios.revenue_from_operations) * 100;
+  const prevRevenue = data.previous_year_profit_loss?.revenue_from_operations;
+  if (prevRevenue && pl.revenue_from_operations > prevRevenue) {
+    const growth = ((pl.revenue_from_operations - prevRevenue) / prevRevenue) * 100;
     if (growth > 10) {
       recs.push({
         priority: "POSITIVE",

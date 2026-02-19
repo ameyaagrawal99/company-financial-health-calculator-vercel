@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 // Sample data: TechPro Solutions Pvt Ltd — mathematically consistent Indian SME
-export const SAMPLE_EXTRACTED_DATA = {
+const SAMPLE_EXTRACTED_DATA = {
   company_name: "TechPro Solutions Pvt Ltd",
   financial_year: "2024-25",
   previous_financial_year: "2023-24",
